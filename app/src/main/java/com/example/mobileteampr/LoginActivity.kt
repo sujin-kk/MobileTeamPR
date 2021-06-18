@@ -50,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
                         }
 
                         if(successLogin){ // 성공 후 액티비티 전환
+                            // 문제 부분 : login 할때 현재 user id로 setting, myviewModel에 null 값 들어감
                             myViewModel.setLiveData(userKey)
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             //intent.putExtra("idKey", userKey)

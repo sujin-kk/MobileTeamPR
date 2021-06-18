@@ -52,6 +52,8 @@ class GroupDialogFragment : DialogFragment() {
     private fun init(view:View){
         urdb = FirebaseDatabase.getInstance().getReference("All/Users") // id 검색해서 초대
         rdb = FirebaseDatabase.getInstance().getReference("All/Groups") // groups leaf에 그룹 생성
+
+        // 문제 : null 값 들어감
         curId = myViewModel.curUserId.value.toString() // 현재 계정 정보
 
         invitedUsers.add(curId) // 자신도 추가
