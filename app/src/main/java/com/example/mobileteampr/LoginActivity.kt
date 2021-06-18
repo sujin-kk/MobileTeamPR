@@ -2,8 +2,10 @@ package com.example.mobileteampr
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mobileteampr.databinding.ActivityLoginBinding
@@ -14,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var binding : ActivityLoginBinding
     lateinit var actionBar: ActionBar
     lateinit var rdb: DatabaseReference
+    val myViewModel : MyViewModel by viewModels() // owner
     var successLogin = false
     lateinit var userKey: String
 
@@ -47,9 +50,11 @@ class LoginActivity : AppCompatActivity() {
                         }
 
                         if(successLogin){ // 성공 후 액티비티 전환
+                            myViewModel.setLiveData(userKey)
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent.putExtra("idKey", userKey)
+                            //intent.putExtra("idKey", userKey)
                             startActivity(intent)
+                            Log.d("key", myViewModel.curUserId.value.toString())
                         }
                         else{
                             Toast.makeText(this@LoginActivity, "일치하지 않는 계정입니다.", Toast.LENGTH_SHORT).show()

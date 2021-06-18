@@ -15,6 +15,7 @@ class SetFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_set, container, false)
+
         init(view)
         return view
     }
